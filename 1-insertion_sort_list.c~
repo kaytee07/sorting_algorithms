@@ -1,0 +1,42 @@
+#include "sort.h"
+
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+void insertion_sort_list(listint_t **list)
+{
+  listint_t *array, *array_t, *temp;
+  if (list == NULL || *list == NULL || (*list)->next == NULL)
+    return;
+  
+  array = *list;
+  array_t = (*list)->next;
+
+  while (array_t != NULL)
+    {
+      printf("%d\n", array_t->n);
+      while (array != array_t)
+	{
+	  printf("%d: %da ", array->n, array_t->n);
+	   if (array->n > array_t->n)
+	    {
+	      printf("%d: %da\n", array->n, array_t->n);
+	      array_t->prev->next = array_t->next;
+	      array_t->next->prev = array_t->prev;
+	      array_t->next = array;
+	      array_t->prev = array->prev;
+	      array->prev->next =array_t;
+	    }
+	  array = array->next;
+	  }
+      printf("\n");
+      print_list(*list);
+      array_t = array_t->next;
+      array = *list;
+    }
+}
