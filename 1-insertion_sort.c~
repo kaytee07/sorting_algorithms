@@ -1,0 +1,27 @@
+#include "sort.h"
+
+
+void insertion_sort_list(listint_t **list)
+{
+  listint *head, *curr, *sorted_list;
+  if (list == NULL || *list == NULL || (*list)->next == NULL)
+    return;
+
+  head = *list;
+  curr = *list;
+
+  while (curr != NULL)
+    {
+      if (sorted_list == NULL)
+	{
+	  curr = curr->next;
+	  continue;
+	}
+
+      while (sorted_list != NULL && sorted_list->n < curr->n)
+	sorted_list  = sorted->prev;
+
+      printf("%d", sorted->n);
+      curr = curr->next;
+    }
+}

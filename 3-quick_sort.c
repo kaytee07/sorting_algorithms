@@ -16,7 +16,6 @@ int i = low - 1, j, tmp;
 
 for (j = low; j < high; j++)
 {
-printf("%dp\n", arr[i]);
 if (arr[j] < pivot)
 {
 i++;

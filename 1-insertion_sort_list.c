@@ -2,51 +2,46 @@
 
 
 /**
- *
- *
- *
- *
+ * insertion_sort_list - sort linked list
+ * @list: linked list to be sorted 
  */
 
 void insertion_sort_list(listint_t **list)
 {
-  listint_t *array, *array_t, *temp;
-  if (list == NULL || *list == NULL || (*list)->next == NULL)
-    return;
-  
-  array = *list;
-  array_t = (*list)->next;
+  listint_t *sorted_list, *curr, *prev, *next;
+    if (list == NULL || *list == NULL || (*list)->next == NULL)
+        return;
 
-  while (array_t != NULL)
+    sorted_list = NULL, curr = *list, prev = NULL, next = NULL;
+
+    while (curr != NULL)
     {
-      printf("%d\n", array_t->n);
-      while (array != array_t)
-	{
-	  printf("%d: %da ", array->n, array_t->n);
-	   if (array->n > array_t->n)
-	    {
-	      array->prev->next = array->next;
-              if (array->next != NULL)
-                array->next->prev = array->prev;
+        next = curr->next;
 
-              // Insert the current node in front of the next node
-              array->prev = array_t->prev;
-              array->next = array_t;
-              if (array_t->prev != NULL)
-                array_t->prev->next = array;
-              array_t->prev = array;
+        while (sorted_list != NULL && sorted_list->n < curr->n)
+            sorted_list = sorted_list->prev;
 
-              // Update array_t to point to the next node
-              temp = array_t;
-              array_t = array;
-              array = temp;
+        if (sorted_list == NULL)
+        {
+            curr->prev = NULL;
+            curr->next = sorted_list;
+            sorted_list = curr;
+        }
+        else
+        {
+            prev = sorted_list->prev;
+            curr->prev = prev;
+            curr->next = sorted_list;
+            sorted_list->prev = curr;
 
-	    }
-	  array = array->next;
-	  }
-      printf("\n");
-      print_list(*list);
-      array_t = array_t->next;
-      array = *list;
+            if (prev != NULL)
+                prev->next = curr;
+            else
+                *list = curr;
+        }
+	print_list(*list);
+
+        sorted_list = curr;
+        curr = next;
     }
 }
