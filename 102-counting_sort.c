@@ -3,8 +3,7 @@
 #include <stdio.h>
 
 /**
- * counting_sort - sorts an array of integers in ascending order using
- *                 the Counting sort algorithm
+ * counting_sort - sorts an array of integers in ascending order us
  * @array: the array to sort
  * @size: the size of the array
  */
